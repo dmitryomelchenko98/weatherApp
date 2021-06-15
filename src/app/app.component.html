@@ -1,0 +1,62 @@
+<div class="contentApp" *ngIf="!loading, else preloader" >
+  <div class="contentApp_header">
+    <div class="header_locationName" *ngIf="citySearch, else citySearchBlock">
+        <span>{{ respons.name }}</span>
+    </div>
+    <div class="header_measurements">
+      <div class="measurements-cel" [class.active]="measurements" (click)="measurements=true; getWeatherByCity(respons.name)">
+        <span>C</span>
+      </div>
+      <div class="measurements-far" [class.active]="!measurements" (click)="measurements=false; getWeatherByCityFur(respons.name)">
+        <span>F</span>
+      </div>
+    </div>
+    <div class="header_locationNavigation" *ngIf="citySearch">
+      <div class="navigation-search" (click)="citySearch=false">
+        <span>Сменить город</span>
+      </div>
+      <div class="navigation-map" (click)="getWeatherGeolocation()">
+        <img src="../assets/images/photodraw.ru-12776.png" alt="">
+        <span>Мое местоположение</span>
+      </div>
+    </div>
+    <ng-template #citySearchBlock>
+      <div class="header_search">
+        <input type="search" class="search-input" placeholder="Введите город..." (input)="onInput($event)"> 
+        <input type="submit" class="search-butt" value="" (click)="getWeatherByCity(citySearchInput)">
+      </div>
+    </ng-template>
+  </div>
+  
+  <div class="contentApp_temperature">
+    <div class="temperature-item">
+      <img src="https://openweathermap.org/img/w/{{respons.weather[0].icon}}.png" alt="">
+      <span>{{ respons.main.temp }}°</span>
+    </div>
+    <p>{{ respons.weather[0].description }}</p>
+  </div>
+  <div class="contentApp_additionalInfo">
+    <div class="additionalInfo-item">
+      <span>Ветер</span>
+      <p>{{ respons.wind.speed }} м/с, под углом {{ respons.wind.deg }} градусов</p>
+    </div>
+    <div class="additionalInfo-item">
+      <span>Давление</span>
+      <p>{{ respons.main.pressure }} мм рт. ст.</p>
+    </div>
+    <div class="additionalInfo-item">
+      <span>Влажность</span>
+      <p>{{ respons.main.humidity }}%</p>
+    </div>
+    <div class="additionalInfo-item">
+      <span>Вероятность дождя</span>
+      <p>{{ respons.clouds.all }}%</p>
+    </div>
+  </div>
+</div>
+
+<ng-template #preloader>
+  <div class="preloader">
+    <span>Загрузка данных...</span>
+  </div>
+</ng-template>

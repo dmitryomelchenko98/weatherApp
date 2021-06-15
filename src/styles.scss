@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: Roboto-Light; /* Имя шрифта */
+    src: url(./assets/fonts/Roboto-Light.ttf); /* Путь к файлу со шрифтом */
+}
+
+head, body, html{
+    background-color: #6894c3;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Roboto-Light;
+}
+
+html {
+    display: flex;
+    justify-content: center;
+}
+
+body {
+    max-width: 1440px;
+}

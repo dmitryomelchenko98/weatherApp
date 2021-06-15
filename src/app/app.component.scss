@@ -1,0 +1,214 @@
+$background: #6894c3;
+$textInfo: #8eacc7;
+$text: #fff;
+
+
+
+.contentApp {
+    padding: 10px;
+    height: calc(100% - 20px);
+    width: calc(100% - 20px);
+    display: inline-grid;
+    grid-template-rows: 1fr 7fr 2fr;
+    .contentApp_header {
+        display: grid;
+        grid-template-columns: 2fr minmax(80px,1fr);
+        grid-template-rows: 1fr minmax(50px,1fr);
+        padding: 10px;
+        .header_locationName {
+            color: $text;
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .header_locationNavigation {
+            grid-column: 1/3;
+            display: flex;
+            .navigation-map, .navigation-search {
+                display: flex;
+                align-items: center;
+                color: $textInfo;
+                cursor: pointer;
+                span {
+                    font-size: 18px;
+                }
+                img {
+                    width: auto;
+                    height: 20px;
+                }
+            }
+            .navigation-search {
+                margin-right: 15px;
+            }
+        }
+
+        .header_search {
+            align-self: center;
+            width: 300px; 
+            height: 39px;
+            border: 1px solid $background; 
+            background-color: $text;
+            min-height: 20px; 
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+            .search-input {
+                border-radius: 4px 0 0 4px;
+                border: none; 
+                outline: none; 
+                font-size: 15px;
+                -webkit-appearance: none; 
+                width: 274px; 
+                height: 39px;
+                color: $background;
+                vertical-align: middle; 
+            }
+            .search-butt {
+                width: 20px; 
+                height: 20px;
+                border: none; 
+                background: url(../assets/images/search_black_24dp.svg) no-repeat 50% 50%; 
+                cursor: pointer;
+            }
+        }
+       
+        
+        .header_measurements {
+            justify-self: end;
+            align-self: center;
+            display: flex;
+            width: 80px;
+            height: 28px;
+            justify-content: center;
+            flex-direction: row;
+            margin-right: 15px;
+            border-radius: 7px;
+            border: 2px $textInfo solid;
+            background-color: #6894c3;
+            .measurements-cel, .measurements-far {
+                width: 30px;
+                text-align: center;
+                padding: 5px;
+                cursor: pointer;
+                color: $textInfo;
+            }
+            .measurements-cel {
+                border-right: 2px $textInfo solid;
+                border-radius: 4px 0 0 4px;
+            }
+    
+            .measurements-far {
+                border-radius: 0 4px 4px 0;
+            }
+    
+            .active {
+                background-color: $textInfo;
+                color: $text;
+            }
+        }
+    }
+
+    
+    .contentApp_temperature {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: $text;
+        .temperature-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            span {
+                font-size: 120px;
+            }
+            img {
+                height: 160px;
+                width: auto;
+            }
+        }
+        p {
+            font-size: 25px;
+        }
+    }
+    .contentApp_additionalInfo {
+        display: flex;
+        justify-content: space-between;
+        .additionalInfo-item {
+            span {
+                color: $textInfo;
+            }
+            p {
+                color: $text;
+                padding: 0;
+                margin: 5px 0 0 0 ;
+            }
+        }
+    }
+}
+
+.preloader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: $textInfo;
+    font-size: 35px;
+}
+
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 415px){
+    
+
+    .contentApp {
+        height: calc(100% - 20px);
+        width: calc(100% - 20px);
+        .contentApp_header {
+            .header_locationNavigation {
+                justify-content: space-between;
+            }
+            .header_search {
+                width: 230px; 
+                .search-input {
+                    width: 204px; 
+                }
+                .search-butt {
+                    width: 20px; 
+                    height: 20px;
+                    border: none; 
+                    background: url(../assets/images/search_black_24dp.svg) no-repeat 50% 50%; 
+                }
+            }
+            .header_measurements {
+                margin-right: 5px;
+            }
+        }
+        .contentApp_temperature {
+            .temperature-item {
+                span {
+                    font-size: 70px;
+                }
+                img {
+                    height: 100px;
+                    width: auto;
+                }
+            }
+            p {
+                font-size: 17px;
+            }
+        }
+        .contentApp_additionalInfo {
+            flex-wrap: wrap;
+            .additionalInfo-item {
+                width: calc(50% - 20px);
+                margin-left: 20px;
+            }
+        }
+    }
+
+    .preloader {
+        font-size: 25px;
+    }
+}
