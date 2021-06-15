@@ -12,8 +12,6 @@ export class AppComponent implements OnInit{
   citySearch = true
   citySearchInput = ''
   respons: any
-  lat: any
-  lon: any
   loading = false
 
   constructor(private http: HttpClient) {}
@@ -29,11 +27,9 @@ export class AppComponent implements OnInit{
     if (navigator.geolocation){
       navigator.geolocation.getCurrentPosition(  
          (position) => {
-          this.lat= position.coords.latitude;
-          this.lon = position.coords.longitude;
-          this.http.get(`http://api.openweathermap.org/data/2.5/weather?lat=${this.lat}&lon=${this.lon}&appid=bfa48bbbc6ab686a8bada69cd058492b&lang=ru`)
-            .subscribe((respons) => {
-              this.respons = respons
+          this.http.get(`http://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=bfa48bbbc6ab686a8bada69cd058492b&lang=ru`)
+            .subscribe((res) => {
+              this.respons = res
               this.loading = false
             })
         }
@@ -43,15 +39,21 @@ export class AppComponent implements OnInit{
 
   getWeatherByCity(city: any) {
     this.http.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=bfa48bbbc6ab686a8bada69cd058492b&lang=ru&units=metric`)
-    .subscribe((respons)=>{
-      this.respons = respons
+    .subscribe((res)=>{
+      this.respons = res
+    },
+    (err) => {
+      alert("Введенный город не найдет, попробуйте ввести другое значение!")
     })
     this.citySearch = true
   }
   getWeatherByCityFur(city: any) {
     this.http.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=bfa48bbbc6ab686a8bada69cd058492b&lang=ru&units=imperial`)
-    .subscribe((respons)=>{
-      this.respons = respons
+    .subscribe((res)=>{
+      this.respons = res
+    },
+    (err) => {
+      alert("Введенный город не найдет, попробуйте ввести другое значение!")
     })
   }
 
